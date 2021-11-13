@@ -16,6 +16,7 @@ for i, v in pairs({
 	GameTimeFrame,
 	MinimapZoomIn,
 	MinimapZoomOut
-    }) do
+    }) 
+	do
         v:Hide()
-    end
+end

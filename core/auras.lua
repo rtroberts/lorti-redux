@@ -7,9 +7,6 @@ local cfg = ns.cfg
  -- LOCALS
  ---------------------------------------
 
---classcolor
-local classColor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-
 --backdrop
 local backdrop1 = {
 	bgFile = nil,

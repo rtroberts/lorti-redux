@@ -1,5 +1,5 @@
 ## Interface: 20510
-## Author: Lorti, Chordsy, Macumba
+## Author: Lorti, Chordsy, Macumba, Karthos
 ## Version: v8
 ## Title: Lorti UI TBC Classic
 ## Notes: Darkens the default UI. Updated for Classic by Chordsy, Updated for TBC Classic by Macumba
@@ -7,8 +7,9 @@
 config.lua
 core\helpers.lua
 core\frames.lua
-core\buffs.lua
+#core\buffs.lua
 core\actionbars.lua
 core\auras.lua
 core\minimap.lua
 core\focus.lua
+core\errors.lua

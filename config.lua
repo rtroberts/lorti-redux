@@ -17,6 +17,12 @@
   -----------------------------
 
 -- action bars settings
+  cfg.player_frame_scale = 1.2
+  cfg.target_frame_scale = 1.3
+  cfg.focus_frame_scale = 1.3
+  cfg.party_frame_scale = 1.3
+
+  cfg.hide_error_text = true
 
   cfg.textures = {
     normal            = "Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss",
@@ -36,14 +42,12 @@
     useflatbackground = false,  --true uses plain flat color instead
     backgroundcolor   = { r = 0.2, g = 0.2, b = 0.2, a = 0.3},
     shadowcolor       = { r = 0, g = 0, b = 0, a = 0.9},
-    classcolored      = false,
     inset             = 5,
   }
 
-  cfg.color = {
+  cfg.actionbar_colors = {
     normal            = { r = 0.37, g = 0.3, b = 0.3, },
     equipped          = { r = 0.1, g = 0.5, b = 0.1, },
-    classcolored      = false,
   }
 
   cfg.hotkeys = {

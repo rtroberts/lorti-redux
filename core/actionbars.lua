@@ -8,13 +8,8 @@
   --get the config values
   local cfg = ns.cfg
 
-  local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
   local dominos = IsAddOnLoaded("Dominos")
   local bartender4 = IsAddOnLoaded("Bartender4")
-
-  if cfg.color.classcolored then
-    cfg.color.normal = classcolor
-  end
 
   --backdrop settings
   local bgfile, edgefile = "", ""
@@ -54,10 +49,7 @@
       bu.bg:SetPoint("TOPLEFT", bu, "TOPLEFT", -4, 4)
       bu.bg:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", 4, -4)
       bu.bg:SetFrameLevel(bu:GetFrameLevel()-1)
-      if cfg.background.classcolored then
-        cfg.background.backgroundcolor = classcolor
-        cfg.background.shadowcolor = classcolor
-      end
+  
       if cfg.background.showbg and not cfg.background.useflatbackground then
         local t = bu.bg:CreateTexture(nil,"BACKGROUND",-8)
         t:SetTexture(cfg.textures.buttonback)
@@ -145,10 +137,10 @@
     --apply the normaltexture
     if action and  IsEquippedAction(action) then
       --bu:SetNormalTexture(cfg.textures.equipped)
-      nt:SetVertexColor(cfg.color.equipped.r,cfg.color.equipped.g,cfg.color.equipped.b,1)
+      nt:SetVertexColor(cfg.actionbar_colors.equipped.r,cfg.actionbar_colors.equipped.g,cfg.actionbar_colors.equipped.b,1)
     else
       bu:SetNormalTexture(cfg.textures.normal)
-      nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+      nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
     end
     --make the normaltexture match the buttonsize
     nt:SetAllPoints(bu)
@@ -158,23 +150,23 @@
       local action = bu.action
       --print("bu"..bu:GetName().."R"..r.."G"..g.."B"..b)
       if r==1 and g==1 and b==1 and action and (IsEquippedAction(action)) then
-        if cfg.color.equipped.r == 1 and  cfg.color.equipped.g == 1 and  cfg.color.equipped.b == 1 then
+        if cfg.actionbar_colors.equipped.r == 1 and  cfg.actionbar_colors.equipped.g == 1 and  cfg.actionbar_colors.equipped.b == 1 then
           nt:SetVertexColor(0.999,0.999,0.999,1)
         else
-          nt:SetVertexColor(cfg.color.equipped.r,cfg.color.equipped.g,cfg.color.equipped.b,1)
+          nt:SetVertexColor(cfg.actionbar_colors.equipped.r,cfg.actionbar_colors.equipped.g,cfg.actionbar_colors.equipped.b,1)
         end
       elseif r==0.5 and g==0.5 and b==1 then
         --blizzard oom color
-        if cfg.color.normal.r == 0.5 and  cfg.color.normal.g == 0.5 and  cfg.color.normal.b == 1 then
+        if cfg.actionbar_colors.normal.r == 0.5 and  cfg.actionbar_colors.normal.g == 0.5 and  cfg.actionbar_colors.normal.b == 1 then
           nt:SetVertexColor(0.499,0.499,0.999,1)
         else
-          nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+          nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
         end
       elseif r==1 and g==1 and b==1 then
-        if cfg.color.normal.r == 1 and  cfg.color.normal.g == 1 and  cfg.color.normal.b == 1 then
+        if cfg.actionbar_colors.normal.r == 1 and  cfg.actionbar_colors.normal.g == 1 and  cfg.actionbar_colors.normal.b == 1 then
           nt:SetVertexColor(0.999,0.999,0.999,1)
         else
-          nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+          nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
         end
       end
     end)
@@ -217,7 +209,7 @@
     local nt  = _G[name.."NormalTexture2"]
     nt:SetAllPoints(bu)
     --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
     --bu:SetHighlightTexture(cfg.textures.hover)
@@ -253,7 +245,7 @@
     local nt  = _G[name.."NormalTexture2"]
     nt:SetAllPoints(bu)
     --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
     --bu:SetHighlightTexture(cfg.textures.hover)
@@ -278,7 +270,7 @@
     local nt  = _G[name.."NormalTexture"]
     nt:SetAllPoints(bu)
     --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    nt:SetVertexColor(cfg.actionbar_colors.normal.r,cfg.actionbar_colors.normal.g,cfg.actionbar_colors.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
     --bu:SetHighlightTexture(cfg.textures.hover)

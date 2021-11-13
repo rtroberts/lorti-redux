@@ -11,70 +11,6 @@
   -- ACTIONS
   ---------------------------------------
 
-  -- REMOVING UGLY PARTS OF UI
-
-local event_frame = CreateFrame('Frame')
-local errormessage_blocks = {
-	'Способность пока недоступна',
-	'Выполняется другое действие',
-	'Невозможно делать это на ходу',
-	'Предмет пока недоступен',
-	'Недостаточно',
-	'Некого атаковать',
-	'Заклинание пока недоступно',
-	'У вас нет цели',
-	'Вы пока не можете этого сделать',
-
-	'Ability is not ready yet',
-	'Another action is in progress',
-	'Can\'t attack while mounted',
-	'Can\'t do that while moving',
-	'Item is not ready yet',
-	'Not enough',
-	'Nothing to attack',
-	'Spell is not ready yet',
-	'You have no target',
-	'You can\'t do that yet',
-}
-local enable
-local onevent
-local uierrorsframe_addmessage
-local old_uierrosframe_addmessage
-function enable ()
-		old_uierrosframe_addmessage = UIErrorsFrame.AddMessage
-		UIErrorsFrame.AddMessage = uierrorsframe_addmessage
-end
-
-function uierrorsframe_addmessage (frame, text, red, green, blue, id)
-		for i,v in ipairs(errormessage_blocks) do
-			if text and text:match(v) then
-					return
-			end
-		end
-		old_uierrosframe_addmessage(frame, text, red, green, blue, id)
-end
-
-function onevent (frame, event, ...)
-		if event == 'PLAYER_LOGIN' then
-			enable()
-		end
-end
-event_frame:SetScript('OnEvent', onevent)
-event_frame:RegisterEvent('PLAYER_LOGIN')
-
-
-PlayerFrame:SetScale(1.3) 
-TargetFrame:SetScale(1.3) 
-
-PartyMemberFrame1:SetScale(1.5)
-PartyMemberFrame2:SetScale(1.5)
-PartyMemberFrame3:SetScale(1.5)
-PartyMemberFrame4:SetScale(1.5)
-
--- COLORING FRAMES
-local CF=CreateFrame("Frame")
-CF:RegisterEvent("PLAYER_ENTERING_WORLD")
-CF:RegisterEvent("GROUP_ROSTER_UPDATE")
 
 hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
 	local classification = UnitClassification(self.unit);
@@ -104,18 +40,34 @@ hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalText
 end)
 
 
+PlayerFrame:SetScale(cfg.player_frame_scale)
+TargetFrame:SetScale(cfg.target_frame_scale) 
+
+PartyMemberFrame1:SetScale(cfg.party_frame_scale)
+PartyMemberFrame2:SetScale(cfg.party_frame_scale)
+PartyMemberFrame3:SetScale(cfg.party_frame_scale)
+PartyMemberFrame4:SetScale(cfg.party_frame_scale)
+
+-- COLORING FRAMES
+local CF=CreateFrame("Frame")
+CF:RegisterEvent("PLAYER_ENTERING_WORLD")
+CF:RegisterEvent("GROUP_ROSTER_UPDATE")
+
+-- I could be wrong about this assumption but I think this only ever needs to be called when the group changes;
+-- i.e. GROUP_ROSTER_UPDATE
+-- and not even on player_entering_world
+local function ColorRaid(self, event, ...)
+	if event ~= "GROUP_ROSTER_UPDATE" then return end
+	Helpers.ColorRaid()
+end
+
+CF:SetScript("OnUpdate", ColorRaid);
 
 CF:SetScript("OnEvent", function(self, event)
-	Helpers.ColorRaid()
-	CF:SetScript("OnUpdate", function()
-		if CompactRaidGroup1 and not groupcolored == true then
-			Helpers.ColorRaid()
-		end
-		if CompactRaidFrame1 and not singlecolored == true then
-			Helpers.ColorRaid()
-		end
-	end)
-	if event == "GROUP_ROSTER_UPDATE" then return end
+	if event == "GROUP_ROSTER_UPDATE" then 
+		Helpers.ColorRaid()
+		return
+	end
 
 	if (IsAddOnLoaded("Shadowed Unit Frames") or IsAddOnLoaded("PitBull Unit Frames 4.0") or IsAddOnLoaded("X-Perl UnitFrames")) then return end
 

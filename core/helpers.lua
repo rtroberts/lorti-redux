@@ -4,10 +4,10 @@ Helpers = CreateFrame('Frame', nil, UIParent)
 local addon, ns = ...
 --get the config values
 local cfg = ns.cfg
-local dragFrameList = ns.dragFrameList
 
 
 function Helpers.ColorRaid()
+    print("Helpers.colorraid called", time())
     for g = 1, NUM_RAID_GROUPS do
         local group = _G["CompactRaidGroup"..g.."BorderFrame"]
         if group then
