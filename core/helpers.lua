@@ -5,6 +5,9 @@ local addon, ns = ...
 --get the config values
 local cfg = ns.cfg
 
+function Helpers.bool_to_num(value)
+    return value == true and 1 or value == false and 0
+end
 
 function Helpers.ColorRaid()
     print("Helpers.colorraid called", time())

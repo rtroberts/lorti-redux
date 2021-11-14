@@ -192,9 +192,6 @@ local function OnEvent(self, event, addon)
 
     if addon == "Blizzard_TimeManager" then
 																		 
-														   
-															  
-
 		for _, v in pairs({StopwatchFrame:GetRegions()})do
 			v:SetVertexColor(.35, .35, .35)
 		end

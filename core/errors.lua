@@ -15,7 +15,7 @@ capturedMessages['Заклинание пока недоступно'] = true
 capturedMessages['У вас нет цели'] = true
 capturedMessages['Вы пока не можете этого сделать'] = true 
 
-capturedMessages['Ability is not ready yet'] = true 
+capturedMessages['Ability is not ready yet.'] = true 
 capturedMessages['Another action is in progress'] = true
 capturedMessages['Can\'t attack while mounted'] = true 
 capturedMessages['Can\'t do that while moving'] = true 

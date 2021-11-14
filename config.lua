@@ -75,7 +75,7 @@
   }
 
   cfg.font = STANDARD_TEXT_FONT
-  cfg.frameIntensity = 0.35 
+  -- cfg.frameIntensity = 0.35  --unused??
 
   --adjust the oneletter abbrev?
   cfg.adjustOneletterAbbrev = true
