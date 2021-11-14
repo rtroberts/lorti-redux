@@ -3,9 +3,9 @@ local addon, ns = ...
 --get the config values
 local cfg = ns.cfg
 
- ---------------------------------------
- -- LOCALS
- ---------------------------------------
+---------------------------------------
+-- LOCALS
+---------------------------------------
 
 --backdrop
 local backdrop1 = {
@@ -18,34 +18,36 @@ local backdrop1 = {
 		left = 4,
 		right = 4,
 		top = 4,
-		bottom = 4,
-	},
+		bottom = 4
+	}
 }
 
- ---------------------------------------
-  -- FUNCTIONS
- ---------------------------------------
+---------------------------------------
+-- FUNCTIONS
+---------------------------------------
 
 --apply aura frame texture func
 local function applySkin(b)
-	if not b or (b and b.styled) then return end
+	if not b or (b and b.styled) then
+		return
+	end
 	--button name
 	local name = b:GetName()
 	if (name:match("Debuff")) then
 		b.debuff = true
-   	else
-   		b.buff = true
+	else
+		b.buff = true
 	end
 	--icon
-	local icon = _G[name.."Icon"]
+	local icon = _G[name .. "Icon"]
 	icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	icon:SetDrawLayer("BACKGROUND",-8)
+	icon:SetDrawLayer("BACKGROUND", -8)
 	b.icon = icon
 	--border
-	local border = _G[name.."Border"] or b:CreateTexture(name.."Border", "BACKGROUND", nil, -7)
+	local border = _G[name .. "Border"] or b:CreateTexture(name .. "Border", "BACKGROUND", nil, -7)
 	border:SetTexture("Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss2")
 	border:SetTexCoord(0, 1, 0, 1)
-	border:SetDrawLayer("BACKGROUND",- 7)
+	border:SetDrawLayer("BACKGROUND", -7)
 	if b.buff then
 		border:SetVertexColor(0, 0, 0)
 	end
@@ -58,11 +60,11 @@ local function applySkin(b)
 	back:SetPoint("TOPLEFT", b, "TOPLEFT", -4, 4)
 	back:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 4, -4)
 	back:SetFrameLevel(b:GetFrameLevel() - 1)
-	
+
 	back.Backdrop = CreateFrame("Frame", "Backdrop", back, BackdropTemplateMixin and "BackdropTemplate")
-    back.Backdrop:SetAllPoints()
+	back.Backdrop:SetAllPoints()
 	back.Backdrop:SetBackdrop(backdrop1)
-	
+
 	back.Backdrop:SetBackdropBorderColor(0, 0, 0, 0.9)
 	b.bg = back
 	--set button styled variable
@@ -72,35 +74,37 @@ end
 --apply castbar texture
 
 local function applycastSkin(b)
-	if not b or (b and b.styled) then return end
+	if not b or (b and b.styled) then
+		return
+	end
 	-- parent
 	if b == TargetFrameSpellBar.Icon then
 		b.parent = TargetFrameSpellBar
 	end
 	-- frame
 	frame = CreateFrame("Frame", nil, b.parent)
-    	--icon
-    	b:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-    	--border
-    	local border = frame:CreateTexture(nil, "BACKGROUND")
-    	border:SetTexture("Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss")
-    	border:SetTexCoord(0, 1, 0, 1)
-    	border:SetDrawLayer("BACKGROUND",- 7)
+	--icon
+	b:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	--border
+	local border = frame:CreateTexture(nil, "BACKGROUND")
+	border:SetTexture("Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss")
+	border:SetTexCoord(0, 1, 0, 1)
+	border:SetDrawLayer("BACKGROUND", -7)
 	border:SetVertexColor(0.4, 0.35, 0.35)
-    	border:ClearAllPoints()
+	border:ClearAllPoints()
 	border:SetPoint("TOPLEFT", b, "TOPLEFT", -1, 1)
-      	border:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 1, -1)
-    	b.border = border
+	border:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 1, -1)
+	b.border = border
 	--shadow
 	local back = CreateFrame("Frame", nil, b.parent)
 	back:SetPoint("TOPLEFT", b, "TOPLEFT", -4, 4)
 	back:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 4, -4)
 	back:SetFrameLevel(frame:GetFrameLevel() - 1)
-	
+
 	back.Backdrop = CreateFrame("Frame", "Backdrop", back, BackdropTemplateMixin and "BackdropTemplate")
-    back.Backdrop:SetAllPoints()
+	back.Backdrop:SetAllPoints()
 	back.Backdrop:SetBackdrop(backdrop1)
-	
+
 	back.Backdrop:SetBackdropBorderColor(0, 0, 0, 0.9)
 	b.bg = back
 	--set button styled variable
@@ -111,7 +115,7 @@ end
 
 function UpdateTimer(self, elapsed)
 	total = total + elapsed
-	if TargetFrameSpellBar.Icon then 
+	if TargetFrameSpellBar.Icon then
 		applycastSkin(TargetFrameSpellBar.Icon)
 	end
 	if TargetFrameSpellBar.Icon.styled then
@@ -119,31 +123,32 @@ function UpdateTimer(self, elapsed)
 	end
 end
 
- ---------------------------------------
-  -- INIT
- ---------------------------------------
+---------------------------------------
+-- INIT
+---------------------------------------
 
-hooksecurefunc("TargetFrame_UpdateAuras", function(self)
-	for i = 1, MAX_TARGET_BUFFS do
-		b = _G["TargetFrameBuff"..i]
-		applySkin(b)
+hooksecurefunc(
+	"TargetFrame_UpdateAuras",
+	function(self)
+		for i = 1, MAX_TARGET_BUFFS do
+			b = _G["TargetFrameBuff" .. i]
+			applySkin(b)
+		end
+		for i = 1, MAX_TARGET_DEBUFFS do
+			b = _G["TargetFrameDebuff" .. i]
+			applySkin(b)
+		end
+		for i = 1, MAX_TARGET_BUFFS do
+			b = _G["FocusFrameBuff" .. i]
+			applySkin(b)
+		end
+		for i = 1, MAX_TARGET_DEBUFFS do
+			b = _G["FocusFrameDebuff" .. i]
+			applySkin(b)
+		end
 	end
-	for i = 1, MAX_TARGET_DEBUFFS do
-		b = _G["TargetFrameDebuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_BUFFS do
-		b = _G["FocusFrameBuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_DEBUFFS do
-		b = _G["FocusFrameDebuff"..i]
-		applySkin(b)
-	end
-end)
+)
 
-
-	
 total = 0
 cf = CreateFrame("Frame")
 cf:SetScript("OnUpdate", UpdateTimer)

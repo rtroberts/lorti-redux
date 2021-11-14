@@ -1,4 +1,4 @@
-Helpers = CreateFrame('Frame', nil, UIParent)
+Helpers = CreateFrame("Frame", nil, UIParent)
 
 --get the addon namespace
 local addon, ns = ...
@@ -12,7 +12,7 @@ end
 function Helpers.ColorRaid()
     print("Helpers.colorraid called", time())
     for g = 1, NUM_RAID_GROUPS do
-        local group = _G["CompactRaidGroup"..g.."BorderFrame"]
+        local group = _G["CompactRaidGroup" .. g .. "BorderFrame"]
         if group then
             for _, region in pairs({group:GetRegions()}) do
                 if region:IsObjectType("Texture") then
@@ -22,7 +22,7 @@ function Helpers.ColorRaid()
         end
 
         for m = 1, 5 do
-            local frame = _G["CompactRaidGroup"..g.."Member"..m]
+            local frame = _G["CompactRaidGroup" .. g .. "Member" .. m]
             if frame then
                 groupcolored = true
                 for _, region in pairs({frame:GetRegions()}) do
@@ -31,7 +31,7 @@ function Helpers.ColorRaid()
                     end
                 end
             end
-            local frame = _G["CompactRaidFrame"..m]
+            local frame = _G["CompactRaidFrame" .. m]
             if frame then
                 singlecolored = true
                 for _, region in pairs({frame:GetRegions()}) do
