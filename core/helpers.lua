@@ -10,7 +10,6 @@ function Helpers.bool_to_num(value)
 end
 
 function Helpers.ColorRaid()
-    print("Helpers.colorraid called", time())
     for g = 1, NUM_RAID_GROUPS do
         local group = _G["CompactRaidGroup" .. g .. "BorderFrame"]
         if group then

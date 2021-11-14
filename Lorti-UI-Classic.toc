@@ -8,7 +8,7 @@ config.lua
 core\helpers.lua
 core\actionbars.lua
 core\frames.lua
-#core\buffs.lua
+core\buffs.lua
 core\auras.lua
 core\minimap.lua
 core\focus.lua

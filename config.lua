@@ -15,12 +15,16 @@ local cfg = CreateFrame("Frame")
 -- CONFIG
 -----------------------------
 
--- action bars settings
-cfg.player_frame_scale = 1.2
-cfg.target_frame_scale = 1.3
-cfg.focus_frame_scale = 1.3
-cfg.party_frame_scale = 1.3
+-- frame sizes
+cfg.player_frame_scale = 1.0
+cfg.target_frame_scale = 1.0
+cfg.focus_frame_scale = 1.0
+cfg.party_frame_scale = 1.0
 
+-- show/hide endcap gryphon art
+cfg.show_gryphons = false
+
+-- swallow error messages? ("not enough mana", "out of range", etc.)
 cfg.hide_error_text = true
 
 cfg.textures = {
@@ -74,7 +78,6 @@ cfg.cooldown = {
 }
 
 cfg.font = STANDARD_TEXT_FONT
--- cfg.frameIntensity = 0.35  --unused??
 
 --adjust the oneletter abbrev?
 cfg.adjustOneletterAbbrev = true
@@ -89,9 +92,9 @@ cfg.combineBuffsAndDebuffs = false
 -- buff frame settings
 
 cfg.buffFrame = {
+  tempEnchantScalar = 0.8, -- reduce the size of temp enchant buffs (wf, poisons, etc)
   pos = {a1 = "TOPRIGHT", af = "Minimap", a2 = "TOPLEFT", x = -35, y = 0},
   gap = 30, --gap between buff and debuff rows
-  userplaced = true, --want to place the bar somewhere else?
   rowSpacing = 10,
   colSpacing = 7,
   buttonsPerRow = 10,
@@ -103,14 +106,12 @@ cfg.buffFrame = {
   },
   border = {
     texture = "Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss",
-    color = {r = 0.4, g = 0.35, b = 0.35},
-    classcolored = false
+    color = {r = 0.4, g = 0.35, b = 0.35}
   },
   background = {
     show = true, --show backdrop
     edgeFile = "Interface\\AddOns\\Lorti-UI-Classic\\textures\\outer_shadow",
     color = {r = 0, g = 0, b = 0, a = 0.9},
-    classcolored = false,
     inset = 6,
     padding = 4
   },
@@ -131,7 +132,6 @@ cfg.buffFrame = {
 cfg.debuffFrame = {
   pos = {a1 = "TOPRIGHT", af = "Minimap", a2 = "TOPLEFT", x = -35, y = -85},
   gap = 10, --gap between buff and debuff rows
-  userplaced = true, --want to place the bar somewhere else?
   rowSpacing = 10,
   colSpacing = 7,
   buttonsPerRow = 10,
@@ -143,14 +143,12 @@ cfg.debuffFrame = {
   },
   border = {
     texture = "Interface\\AddOns\\Lorti-UI-Classic\\textures\\gloss2",
-    color = {r = 0.4, g = 0.35, b = 0.35},
-    classcolored = false
+    color = {r = 0.4, g = 0.35, b = 0.35}
   },
   background = {
     show = true, --show backdrop
     edgeFile = "Interface\\AddOns\\Lorti-UI-Classic\\textures\\outer_shadow",
     color = {r = 0, g = 0, b = 0, a = 0.9},
-    classcolored = false,
     inset = 6,
     padding = 4
   },

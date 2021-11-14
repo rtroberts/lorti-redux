@@ -21,9 +21,9 @@ capturedMessages["Can't attack while mounted"] = true
 capturedMessages["Can't do that while moving"] = true
 capturedMessages["Item is not ready yet"] = true
 capturedMessages["Not enough"] = true
-capturedMessages["Nothing to attack"] = true
+capturedMessages["There is nothing to attack."] = true
 capturedMessages["Spell is not ready yet."] = true
-capturedMessages["You have no target"] = true
+capturedMessages["You have no target."] = true
 capturedMessages["You can't do that yet"] = true
 
 local OriginalAddMessageFunc

@@ -301,6 +301,11 @@ local function init()
   --style leave button
   StyleLeaveButton(MainMenuBarVehicleLeaveButton)
   StyleLeaveButton(rABS_LeaveVehicleButton)
+
+  if not cfg.show_gryphons then
+    MainMenuBarLeftEndCap:SetAlpha(0)
+    MainMenuBarRightEndCap:SetAlpha(0)
+  end
 end
 
 ---------------------------------------

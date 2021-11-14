@@ -2,7 +2,6 @@
 local addon, ns = ...
 --get the config values
 local cfg = ns.cfg
-local dragFrameList = ns.dragFrameList
 
 -- v:SetVertexColor(.35, .35, .35) GREY
 -- v:SetVertexColor(.05, .05, .05) DARKEST
